@@ -11,6 +11,6 @@
     "outDir": "dist",
     "strict": true
   },
-  "exclude": ["lib", "node_modules", "tests/**/*.spec.ts"],
-  "include": ["dist"]
+  "exclude": ["dist", "node_modules", "tests/**/*.spec.ts"],
+  "include": ["lib"]
 }
