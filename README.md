@@ -28,6 +28,12 @@ console.log(classes.button) // => "button background--blue"
 
 # Installation
 
+`npm install be-classy`
+
+or
+
+`yarn add be-classy`
+
 ## Typescript support
 
 Be Classy comes with Typescript support out of the box and hopefully the typings are tight enough.
