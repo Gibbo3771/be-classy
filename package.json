@@ -1,6 +1,6 @@
 {
   "name": "be-classy",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Be classy is a lightweight conditional css class renderer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -14,6 +14,14 @@
     "type": "git",
     "url": "https://github.com/Gibbo3771/be-classy"
   },
+  "keywords": [
+    "react",
+    "vue",
+    "classes",
+    "classname",
+    "classnames",
+    "styles"
+  ],
   "license": "ISC",
   "devDependencies": {
     "@types/chai": "^4.2.7",
