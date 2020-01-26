@@ -30,21 +30,13 @@ export function beClassy<P = {}, R extends ClassyClasses = {}, C = {}>(
   func: MapClassesWithProps<P, R>
 ): (props?: P) => C {
   return function(props?: P): C {
-    return mapClasses<C, R>(props ? func(props) : func({} as P));
+    const classes: R = props ? func(props) : func({} as P);
+    const mapped: any = {};
+    for (let [key, value] of Object.entries(classes)) {
+      mapped[key] = Object.keys(value)
+        .filter((key: string) => value[key])
+        .join(" ");
+    }
+    return mapped as C;
   };
-}
-
-/**
- * @param classes
- */
-function mapClasses<C, R extends ClassyClasses>(classes: R): C {
-  const mapped: any = {};
-  for (let [key, value] of Object.entries(classes)) {
-    mapped[key] = Object.keys(value)
-      .filter((key: string) => {
-        return value[key];
-      })
-      .join(" ");
-  }
-  return mapped as C;
 }

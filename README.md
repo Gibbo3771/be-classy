@@ -1,6 +1,6 @@
 # Be Classy
 
-A super lightweight (_281 bytes minified!_) Javascript utlity library for conditionally mapping CSS class names.
+A super lightweight (_312 bytes minified!_) Javascript utlity library for conditionally mapping CSS class names.
 It was created to assist in use of the excellent TailwindCSS CSS package but can easily be used without!
 
 ## Enough talk, show me the code
@@ -62,7 +62,7 @@ interface Roots extends ClassyClasses {
 }
 
 /**
- * These are the class defintions we get back from the
+ * These are the class defintions from the
  * decorated function returned by beClassy
  * */
 type Classes = {
@@ -73,7 +73,7 @@ type Classes = {
  * Props and the root structure are strictly typed, so we know what is being
  * passed in and what the function returned object should look like
  **/
-const useClasses = beClassy<Props, Roots>(({ hovered }) => {
+const useClasses = beClassy<Props, Roots, Classes>(({ hovered }) => {
     return {
         button: {
             "button": true,
@@ -83,10 +83,9 @@ const useClasses = beClassy<Props, Roots>(({ hovered }) => {
     }
 });
 
-// We pass our classes typed here, so we don't get errors when we call a property
-const classes = useClasses<Classes>({ hovered: true });
+const classes = useClasses({ hovered: true });
 console.log(classes.button) // => "button background--white"
-const classes = useClasses<Classes>({ hovered: false });
+const classes = useClasses({ hovered: false });
 console.log(classes.button) // => "button background--blue"
 
 ```

@@ -6,6 +6,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
+    "build-min": "uglifyjs --compress --mangle -o ./dist/index.min.js -- ./dist/index.js",
     "test": "mocha -r ts-node/register tests/**/*.spec.ts"
   },
   "author": "Stephen Gibson",
