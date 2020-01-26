@@ -38,7 +38,7 @@ or
 
 Be Classy comes with Typescript support out of the box and hopefully the typings are tight enough.
 
-Here is a Typescript version:
+Here is a Typescript example:
 
 ```Javascript
 
