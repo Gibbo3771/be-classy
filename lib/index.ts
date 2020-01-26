@@ -26,18 +26,18 @@ export type MapClassesWithProps<T extends Object = {}, R = any> = (
  * that can be called with props
  * @param func decorated function that will be returned
  */
-export function beClassy<T = {}, R extends ClassyClasses = {}>(
-  func: MapClassesWithProps<T, R>
-): <K>(props: T) => K {
-  return function<K>(props: T): K {
-    return mapClasses<K, R>(func(props));
+export function beClassy<P = {}, R extends ClassyClasses = {}, C = {}>(
+  func: MapClassesWithProps<P, R>
+): (props: P) => C {
+  return function(props: P): C {
+    return mapClasses<C, R>(func(props));
   };
 }
 
 /**
  * @param classes
  */
-function mapClasses<K, R extends ClassyClasses>(classes: R): K {
+function mapClasses<C, R extends ClassyClasses>(classes: R): C {
   const mapped: any = {};
   for (let [key, value] of Object.entries(classes)) {
     mapped[key] = Object.keys(value)
@@ -46,5 +46,5 @@ function mapClasses<K, R extends ClassyClasses>(classes: R): K {
       })
       .join(" ");
   }
-  return mapped as K;
+  return mapped as C;
 }

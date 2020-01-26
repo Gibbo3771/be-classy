@@ -13,6 +13,10 @@ interface Roots extends ClassyClasses {
   root: ClassyRoot;
   button: ClassyRoot;
 }
+interface Classes {
+  root: string;
+  button: string;
+}
 
 describe("be-classy", function() {
   it("beClassy returns a function", function() {
@@ -35,7 +39,7 @@ describe("be-classy", function() {
     type Classes = {
       root: string;
     };
-    const useClasses = beClassy(() => {
+    const useClasses = beClassy<{}, {}, Classes>(() => {
       return {
         root: {
           "my-class": true,
@@ -43,13 +47,13 @@ describe("be-classy", function() {
         }
       };
     });
-    expect(useClasses<Classes>({}).root).to.eq("my-class my-other-class");
+    expect(useClasses({}).root).to.eq("my-class my-other-class");
   });
   it("Ignores classes with false expressions", function() {
     type Classes = {
       root: string;
     };
-    const useClasses = beClassy(() => {
+    const useClasses = beClassy<{}, {}, Classes>(() => {
       return {
         root: {
           "my-class": false,
@@ -57,11 +61,11 @@ describe("be-classy", function() {
         }
       };
     });
-    expect(useClasses<Classes>({}).root).to.eq("");
+    expect(useClasses({}).root).to.eq("");
   });
 
   describe("Integration test", function() {
-    const useClasses = beClassy<Props, Roots>(props => {
+    const useClasses = beClassy<Props, Roots, Classes>(props => {
       return {
         root: {
           flex: true,
@@ -78,7 +82,7 @@ describe("be-classy", function() {
     });
     it("Match test 1", function() {
       expect(
-        useClasses<{ root: string; button: string }>({
+        useClasses({
           buttonHovered: false,
           isMobile: false
         }).root
@@ -86,7 +90,7 @@ describe("be-classy", function() {
     });
     it("Match test 2", function() {
       expect(
-        useClasses<{ root: string; button: string }>({
+        useClasses({
           buttonHovered: false,
           isMobile: true
         }).root
@@ -94,7 +98,7 @@ describe("be-classy", function() {
     });
     it("Match test 3", function() {
       expect(
-        useClasses<{ root: string; button: string }>({
+        useClasses({
           buttonHovered: true,
           isMobile: true
         }).button
