@@ -14,11 +14,11 @@ export interface ClassyClasses {
 /**
  *
  */
-export type MapClassesWithProps<T extends Object = {}, R = any> = (
+export type MapClassesWithProps<P extends Object = {}, R = any> = (
   /**
    *
    */
-  props: T
+  props: P
 ) => R;
 
 /**
@@ -28,9 +28,9 @@ export type MapClassesWithProps<T extends Object = {}, R = any> = (
  */
 export function beClassy<P = {}, R extends ClassyClasses = {}, C = {}>(
   func: MapClassesWithProps<P, R>
-): (props: P) => C {
-  return function(props: P): C {
-    return mapClasses<C, R>(func(props));
+): (props?: P) => C {
+  return function(props?: P): C {
+    return mapClasses<C, R>(props ? func(props) : func({} as P));
   };
 }
 

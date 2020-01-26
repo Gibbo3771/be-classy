@@ -32,8 +32,8 @@ describe("be-classy", function() {
         otherClasses: {}
       };
     });
-    expect(useClasses({})).ownProperty("myClasses").to.exist;
-    expect(useClasses({})).ownProperty("otherClasses").to.exist;
+    expect(useClasses()).ownProperty("myClasses").to.exist;
+    expect(useClasses()).ownProperty("otherClasses").to.exist;
   });
   it("Joins classes with true", function() {
     type Classes = {
@@ -47,7 +47,7 @@ describe("be-classy", function() {
         }
       };
     });
-    expect(useClasses({}).root).to.eq("my-class my-other-class");
+    expect(useClasses().root).to.eq("my-class my-other-class");
   });
   it("Ignores classes with false expressions", function() {
     type Classes = {
@@ -61,7 +61,7 @@ describe("be-classy", function() {
         }
       };
     });
-    expect(useClasses({}).root).to.eq("");
+    expect(useClasses().root).to.eq("");
   });
 
   describe("Integration test", function() {
