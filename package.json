@@ -1,6 +1,6 @@
 {
   "name": "be-classy",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Be classy is a lightweight conditional css class renderer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
