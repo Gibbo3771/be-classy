@@ -1,13 +1,13 @@
 {
   "name": "be-classy",
-  "version": "1.2.2",
+  "version": "1.3.0",
   "description": "Be classy is a lightweight conditional css class renderer",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
     "build-min": "uglifyjs --compress --mangle -o ./dist/index.min.js -- ./dist/index.js",
-    "test": "mocha -r ts-node/register tests/**/*.spec.ts"
+    "test": "mocha --watch -r ts-node/register tests/**/*.spec.ts"
   },
   "author": "Stephen Gibson",
   "repository": {

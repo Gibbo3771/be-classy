@@ -42,7 +42,7 @@ Here is a Typescript example:
 
 ```Javascript
 
-import { beClassy, ClassyClasses, ClassyRoot } from "be-classy";
+import { beClassy, ClassyIdentityKeys, ClassyClasses } from "be-classy";
 
 
 /**
@@ -56,24 +56,16 @@ type Props = {
  * These are the root elements, I like to treat these like a modular style component that could
  * be applied to one, or many elements
  **/
-interface Roots extends ClassyClasses {
-  root: ClassyRoot;
-  button: ClassyRoot;
-}
-
-/**
- * These are the class defintions from the
- * decorated function returned by beClassy
- * */
-type Classes = {
-    button: string
+interface Roots extends ClassyIdentityKeys {
+  root: ClassyClasses;
+  button: ClassyClasses;
 }
 
 /**
  * Props and the root structure are strictly typed, so we know what is being
  * passed in and what the function returned object should look like
  **/
-const useClasses = beClassy<Props, Roots, Classes>(({ hovered }) => {
+const useClasses = beClassy<Props, Roots>(({ hovered }) => {
     return {
         button: {
             "button": true,

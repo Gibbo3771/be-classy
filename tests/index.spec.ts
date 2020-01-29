@@ -1,4 +1,4 @@
-import { beClassy, ClassyRoot, ClassyClasses } from "../lib/index";
+import { beClassy, ClassyClasses } from "../lib/index";
 import { expect } from "chai";
 import "mocha";
 
@@ -9,13 +9,9 @@ interface Props {
   buttonHovered: boolean;
   isMobile: boolean;
 }
-interface Roots extends ClassyClasses {
-  root: ClassyRoot;
-  button: ClassyRoot;
-}
-interface Classes {
-  root: string;
-  button: string;
+interface ClassKeys {
+  root: ClassyClasses;
+  button: ClassyClasses;
 }
 
 describe("be-classy", function() {
@@ -36,10 +32,7 @@ describe("be-classy", function() {
     expect(useClasses()).ownProperty("otherClasses").to.exist;
   });
   it("Joins classes with true", function() {
-    type Classes = {
-      root: string;
-    };
-    const useClasses = beClassy<{}, {}, Classes>(() => {
+    const useClasses = beClassy(() => {
       return {
         root: {
           "my-class": true,
@@ -50,10 +43,7 @@ describe("be-classy", function() {
     expect(useClasses().root).to.eq("my-class my-other-class");
   });
   it("Ignores classes with false expressions", function() {
-    type Classes = {
-      root: string;
-    };
-    const useClasses = beClassy<{}, {}, Classes>(() => {
+    const useClasses = beClassy(() => {
       return {
         root: {
           "my-class": false,
@@ -65,7 +55,7 @@ describe("be-classy", function() {
   });
 
   describe("Integration test", function() {
-    const useClasses = beClassy<Props, Roots, Classes>(props => {
+    const useClasses = beClassy<Props, ClassKeys>(props => {
       return {
         root: {
           flex: true,
@@ -81,12 +71,11 @@ describe("be-classy", function() {
       };
     });
     it("Match test 1", function() {
-      expect(
-        useClasses({
-          buttonHovered: false,
-          isMobile: false
-        }).root
-      ).to.eq("flex flex-col background--green");
+      const classes = useClasses({
+        buttonHovered: false,
+        isMobile: false
+      });
+      expect(classes.root).to.eq("flex flex-col background--green");
     });
     it("Match test 2", function() {
       expect(
