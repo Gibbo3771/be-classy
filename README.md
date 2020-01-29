@@ -1,4 +1,4 @@
-# Be Classy (v2.3.0)
+# Be Classy (v1.3.0)
 
 A super lightweight (_312 bytes minified!_) Javascript utlity library for conditionally mapping CSS class names.
 It was created to assist in use of the excellent TailwindCSS CSS package but can easily be used without!
